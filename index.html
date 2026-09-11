@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expert-comptable spécialiste des professions libérales - In Extenso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Tokens charte In Extenso (releves sur le site live) ===== */
+  :root{
+    --ink:#00002C;        /* bleu nuit titres */
+    --orange:#F58220;     /* accent marque */
+    --cyan:#00AADB;       /* accent secondaire */
+    --grey:#EFF4F6;       /* fond section */
+    --black:#000;
+    --txt:#000;
+    --font-title:"Trade Gothic LT Std BoldCn","Oswald","Arial Narrow",sans-serif;
+    --font-body:"Trade Gothic LT Std","Arimo",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font-body);font-size:18px;line-height:1.6;color:var(--txt);background:#fff;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  h1,h2,h3{font-family:var(--font-title);text-transform:uppercase;font-weight:500;color:var(--ink);margin:0 0 18px;}
+  h1{font-size:60px;line-height:1.02;color:#fff;}
+  h2{font-size:44px;line-height:1.05;}
+  h3{font-size:24px;line-height:1.1;}
+  p{margin:0 0 16px;}
+  a{color:var(--black);text-decoration:none;}
+  section{padding:72px 0;}
+  section.grey{background:var(--grey);}
+  .eyebrow{font-family:var(--font-title);text-transform:uppercase;color:var(--orange);font-size:18px;letter-spacing:.04em;margin-bottom:10px;display:block;font-weight:600;}
+  .lead{font-size:20px;max-width:820px;}
+  /* CTA fidele : noir carre, texte blanc 16/700 */
+  .btn{display:inline-block;background:var(--black);color:#fff;font-family:var(--font-body);font-size:16px;font-weight:700;padding:14px 26px;border:0;border-radius:0;cursor:pointer;transition:background .2s;}
+  .btn:hover{background:var(--orange);color:#fff;}
+  .btn.orange{background:var(--orange);}
+  .btn.orange:hover{background:var(--black);}
+  /* Badge d'annotation maquette */
+  .tag{position:absolute;top:14px;right:14px;font-family:var(--font-body);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 11px;border-radius:30px;}
+  .tag.new{background:var(--orange);color:#fff;}
+  .tag.reinforce{background:var(--cyan);color:#fff;}
+  .tag.exist{background:#d3d3d3;color:#222;}
+  .rel{position:relative;}
+  /* Hero */
+  .hero{background:linear-gradient(125deg,#00002C 0%,#001a4d 60%,#003a73 100%);color:#fff;padding:96px 0 88px;position:relative;}
+  .hero .crumb{font-size:14px;color:#aac4e6;margin-bottom:22px;}
+  .hero .crumb a{color:#aac4e6;}
+  .hero p{color:#e7eefb;font-size:20px;max-width:660px;}
+  .hero .bar{width:74px;height:6px;background:var(--orange);margin:0 0 26px;}
+  /* Grilles */
+  .grid{display:grid;gap:26px;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .card{background:#fff;border:1px solid #e3e9ee;padding:28px;}
+  section.grey .card{background:#fff;}
+  .card h3{color:var(--ink);}
+  .card .ico{width:46px;height:46px;background:var(--orange);margin-bottom:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-title);font-size:22px;}
+  .card .more{display:inline-block;margin-top:8px;color:var(--orange);font-weight:700;font-size:14px;text-transform:uppercase;}
+  .card .more:hover{text-decoration:underline;}
+  /* Etapes */
+  .step{display:flex;gap:22px;padding:22px 0;border-top:1px solid #dfe6ec;}
+  .step:first-child{border-top:0;}
+  .step .num{font-family:var(--font-title);font-size:46px;color:var(--orange);line-height:1;min-width:70px;}
+  .step h3{margin-bottom:6px;}
+  /* Equipe */
+  .person{text-align:center;}
+  .person .ph{width:100%;aspect-ratio:1/1;background:#dfe6ec linear-gradient(135deg,#cfd8e0,#eef3f7);margin-bottom:14px;}
+  .person .role{color:var(--cyan);font-weight:700;font-size:15px;}
+  /* Temoignages */
+  .quote{background:var(--ink);color:#fff;padding:34px;}
+  .quote .q{font-size:20px;line-height:1.5;margin-bottom:16px;}
+  .quote .q:before{content:"\201C";color:var(--orange);font-size:46px;line-height:0;vertical-align:-12px;margin-right:4px;}
+  .quote .who{color:var(--cyan);font-weight:700;font-size:15px;}
+  /* FAQ */
+  .faq details{border-bottom:1px solid #dfe6ec;padding:18px 0;}
+  .faq summary{font-family:var(--font-title);text-transform:uppercase;font-size:20px;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary:after{content:"+";color:var(--orange);font-size:26px;line-height:1;}
+  .faq details[open] summary:after{content:"\2013";}
+  .faq p{margin-top:14px;margin-bottom:0;max-width:880px;}
+  /* Tableau comparatif (charte) */
+  table.cmp{width:100%;border-collapse:collapse;margin:30px 0 6px;font-size:16px;background:#fff;}
+  table.cmp th{background:var(--ink);color:#fff;font-family:var(--font-title);text-transform:uppercase;font-weight:500;text-align:left;padding:14px 16px;font-size:16px;}
+  table.cmp td{border-bottom:1px solid #dfe6ec;padding:13px 16px;vertical-align:top;}
+  table.cmp tr td:first-child{font-weight:700;color:var(--ink);width:22%;}
+  /* Conversion */
+  .conv{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  .conv .left{background:var(--orange);color:#fff;padding:54px 46px;}
+  .conv .left h2{color:#fff;}
+  .conv .left a{color:#fff;font-weight:700;}
+  .conv .right{background:var(--ink);color:#fff;padding:54px 46px;}
+  .conv .field{display:block;width:100%;padding:13px 14px;margin-bottom:14px;border:0;font-family:var(--font-body);font-size:16px;}
+  .tel{font-family:var(--font-title);font-size:34px;color:#fff;display:inline-block;margin:8px 0 4px;}
+  /* Legende */
+  .legend{background:#00002C;color:#fff;font-size:13px;padding:12px 24px;text-align:center;}
+  .legend b{color:var(--orange);}
+  .legend .chip{display:inline-block;padding:3px 10px;border-radius:20px;font-weight:700;font-size:11px;text-transform:uppercase;margin:0 4px;}
+  .chip.new{background:var(--orange);}
+  .chip.reinforce{background:var(--cyan);}
+  .chip.exist{background:#d3d3d3;color:#222;}
+  ul.check{list-style:none;padding:0;margin:0 0 16px;max-width:820px;}
+  ul.check li{padding:8px 0 8px 30px;position:relative;}
+  ul.check li:before{content:"";position:absolute;left:0;top:15px;width:14px;height:14px;background:var(--orange);}
+  .note{margin-top:14px;font-size:15px;color:#5d5d5d;}
+  /* Chiffre cle (reassurance) */
+  .stats{background:var(--ink);color:#fff;text-align:center;padding:66px 0;}
+  .stats .num{font-family:var(--font-title);font-size:112px;line-height:.9;letter-spacing:.02em;margin:0;text-shadow:5px 5px 0 rgba(255,255,255,.12);}
+  .stats .lab{display:inline-block;background:#fff;color:var(--ink);font-family:var(--font-title);text-transform:uppercase;font-weight:600;font-size:22px;letter-spacing:.03em;padding:12px 26px;margin-top:22px;}
+  /* Actualites / blog */
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px;}
+  .post{display:flex;flex-direction:column;background:#eaf6fb;}
+  .post .media{position:relative;aspect-ratio:16/10;background:#dfe6ec linear-gradient(135deg,#cfd8e0,#eef3f7);}
+  .post .cat{position:absolute;top:0;left:0;color:#fff;font-family:var(--font-body);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em;padding:7px 14px;}
+  .post .body{padding:22px 20px 20px;flex:1;display:flex;flex-direction:column;}
+  .post .body h3{font-size:19px;line-height:1.15;margin:0 0 10px;}
+  .post .pfoot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;}
+  .post .date{font-size:14px;color:#5d5d5d;}
+  .post .arrow{width:40px;height:40px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 40px;}
+  .post.article .cat,.post.article .arrow{background:var(--cyan);}
+  .post.event .cat,.post.event .arrow{background:#5b3fa8;}
+  .post.actu .cat,.post.actu .arrow{background:#3aa6d6;}
+  .morelinks{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .morelinks a{font-weight:700;font-style:italic;text-decoration:underline;color:var(--ink);}
+  /* CTA intermediaire */
+  .midcta{background:var(--orange);color:#fff;text-align:center;}
+  .midcta h2{color:#fff;}
+  .midcta .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+  .midcta .btn{background:#fff;color:var(--ink);}
+  .midcta .btn:hover{background:var(--ink);color:#fff;}
+  /* Bloc annotation : donnees structurees JSON-LD (reference dev) */
+  .schemabox{background:#00121f;}
+  .schemabox .eyebrow{color:var(--cyan);}
+  .schemabox h2{color:#fff;}
+  .schemabox>.wrap>p{color:#aac4e6;max-width:880px;}
+  .schemabox details{border:1px solid #24406e;margin-bottom:14px;background:#001a3a;}
+  .schemabox summary{cursor:pointer;padding:16px 20px;font-family:var(--font-title);text-transform:uppercase;color:var(--orange);font-size:17px;list-style:none;}
+  .schemabox summary::-webkit-details-marker{display:none;}
+  .schemabox summary:before{content:"+ ";color:var(--cyan);}
+  .schemabox details[open] summary:before{content:"\2013 ";}
+  .schemabox .desc{color:#aac4e6;font-size:14px;padding:0 20px 12px;margin:0;}
+  .schemabox pre{margin:0;padding:18px 20px;overflow:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;color:#d7e3f5;white-space:pre;border-top:1px solid #24406e;}
+  @media(max-width:900px){.g3,.g4,.g2,.conv,.posts{grid-template-columns:1fr;}h1{font-size:40px;}h2{font-size:32px;}.stats .num{font-size:76px;}table.cmp,table.cmp tbody,table.cmp tr,table.cmp td{display:block;width:100%;}table.cmp th{display:none;}table.cmp tr{border-bottom:2px solid var(--ink);margin-bottom:12px;}table.cmp tr td:first-child{width:100%;}}
+</style>
+</head>
+<body>
+
+<div class="legend">
+  Exemple d'optimisation applique a la page <b>Expert-comptable profession libérale</b> (CSS repris du site live) &nbsp;|&nbsp;
+  <span class="chip exist">Existant</span> deja en place &nbsp;
+  <span class="chip reinforce">A renforcer</span> present mais a faire evoluer &nbsp;
+  <span class="chip new">Nouveau bloc</span> a ajouter &nbsp;|&nbsp;
+  <b>V4</b> (point du 31/07) : vos enjeux remontés en tête de page, bénéfices en pictos, introduction fusionnée dans les enjeux, témoignages passés à 3
+</div>
+
+<!-- 1. HERO (a renforcer : H1 recale sur le mot-cle) -->
+<header class="hero rel">
+  <span class="tag reinforce">A renforcer</span>
+  <div class="wrap">
+    <div class="crumb"><a href="#">Accueil</a> &rsaquo; <a href="#">Nos offres</a> &rsaquo; Expert-comptable profession libérale</div>
+    <div class="bar"></div>
+    <span class="eyebrow" style="color:#fff;opacity:.85">Notre offre</span>
+    <h1>Expert-comptable<br>spécialiste des professions libérales</h1>
+    <p>Médecin, avocat, consultant ou indépendant : un expert-comptable spécialisé qui maîtrise votre régime BNC, vos cotisations et vos arbitrages fiscaux.</p>
+    <p style="margin-top:26px;"><a href="#conversion" class="btn orange">Être recontacté</a></p>
+  </div>
+</header>
+
+<!-- 2. VOS ENJEUX (V4 : ex-bloc "Comment pouvons-nous vous aider ?" remonté en tête de page + intro sémantique fusionnée) -->
+<section class="grey rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Vos enjeux</span>
+    <h2>Comment pouvons-nous vous aider ?</h2>
+    <p class="lead">Professionnel de santé, du droit ou du conseil, votre priorité est de vous consacrer à vos patients et à vos clients, pas à la gestion administrative de votre activité. Vous cherchez un expert comptable profession libérale qui comprend vraiment votre métier. Pharmacien, dentiste, médecin, infirmier, ostéopathe, avocat, notaire ou consultant, vous relevez le plus souvent des bénéfices non commerciaux (BNC) et de règles fiscales, sociales et comptables bien spécifiques.</p>
+    <p class="lead">Entre les consultations, les rendez-vous et la gestion du cabinet, difficile de garder le recul nécessaire pour piloter votre activité et anticiper les échéances. Avec un expert-comptable spécialisé, vous sécurisez vos déclarations, vous optimisez votre résultat et vous gardez l'esprit libre pour exercer.</p>
+    <p class="lead" style="margin-top:22px;">Vous vous reconnaissez peut-être dans l'une de ces situations ?</p>
+    <ul class="check">
+      <li>Je passe trop de temps sur ma comptabilité et l'administratif au détriment de mon activité.</li>
+      <li>Je veux faire les bons choix pour développer mon cabinet ou mon activité.</li>
+      <li>Je crains une mauvaise surprise sur mes cotisations ou mon impôt.</li>
+      <li>Mon comptable actuel ne connaît pas les spécificités de mon métier.</li>
+      <li>Je ne sais pas si je paie le juste montant d'impôt.</li>
+      <li>Je veux un seul interlocuteur pour ma comptabilité, ma paie et mon juridique.</li>
+      <li>Je souhaite optimiser ma fiscalité et mes revenus.</li>
+    </ul>
+    <p style="margin-top:24px;"><a href="#conversion" class="btn orange">Organisons un premier rendez-vous</a></p>
+    <p class="note">Bloc remonté depuis le bas de page et enrichi (introduction fusionnée pour garder la sémantique tôt dans la page). Verbatims volontairement formulés en irritants, le lecteur se reconnaît.</p>
+  </div>
+</section>
+
+<!-- 2bis. BÉNÉFICES EN PICTOS (V4 : nouveau, bloc pictos type landing page) -->
+<section class="rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Vos bénéfices</span>
+    <h2>Ce que vous y gagnez</h2>
+    <p class="lead">Voici ce que vous gagnez en confiant votre comptabilité à un spécialiste des professions libérales.</p>
+    <div class="grid g3" style="margin-top:34px;">
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Gagnez un temps précieux.</h3></div>
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Sécurisez votre 2035 et vos obligations.</h3></div>
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Profitez de conseils adaptés à votre profession.</h3></div>
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Maîtrisez votre rentabilité.</h3></div>
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Anticipez vos cotisations et votre impôt.</h3></div>
+      <div class="card"><div class="ico"></div><h3 style="font-size:21px;margin:0;">Décidez au bon moment.</h3></div>
+    </div>
+    <p class="note">Accroches courtes sans paragraphes, adaptées au segment de chaque page. Pictos à reprendre du bloc existant des landing pages (design system In Extenso).</p>
+  </div>
+</section>
+
+<!-- 2b. CHIFFRES CLES (nouveau : ligne de reassurance) -->
+<section class="stats rel" style="padding:56px 0;">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <div class="grid g4" style="gap:24px;">
+      <div><p style="font-family:var(--font-title);font-size:60px;line-height:1;color:#fff;margin:0;">5 000</p><span style="display:inline-block;color:var(--orange);font-family:var(--font-title);text-transform:uppercase;font-size:16px;letter-spacing:.03em;margin-top:12px;">libéraux accompagnés</span></div>
+      <div><p style="font-family:var(--font-title);font-size:60px;line-height:1;color:#fff;margin:0;">1991</p><span style="display:inline-block;color:var(--orange);font-family:var(--font-title);text-transform:uppercase;font-size:16px;letter-spacing:.03em;margin-top:12px;">l'année de notre création</span></div>
+      <div><p style="font-family:var(--font-title);font-size:60px;line-height:1;color:#fff;margin:0;">280</p><span style="display:inline-block;color:var(--orange);font-family:var(--font-title);text-transform:uppercase;font-size:16px;letter-spacing:.03em;margin-top:12px;">agences en France</span></div>
+      <div><p style="font-family:var(--font-title);font-size:60px;line-height:1;color:#fff;margin:0;">100+</p><span style="display:inline-block;color:var(--orange);font-family:var(--font-title);text-transform:uppercase;font-size:16px;letter-spacing:.03em;margin-top:12px;">experts dédiés au libéral</span></div>
+    </div>
+    <p style="color:#aac4e6;font-size:14px;margin:28px 0 0;">(« 5 000 libéraux » et « 100+ experts » à confirmer par In Extenso, 1991 et 280 agences sont les chiffres publics du groupe.)</p>
+  </div>
+</section>
+
+<!-- 3. PRESTATIONS (a renforcer : passer en H3 detailles + maillage piliers) -->
+<section class="rel">
+  <span class="tag reinforce">A renforcer</span>
+  <div class="wrap">
+    <span class="eyebrow">Nos prestations</span>
+    <h2>Ce que votre expert-comptable gère pour vous</h2>
+    <p class="lead">In Extenso accompagne plus de 5 000 professionnels libéraux partout en France, avec un conseiller dédié qui connaît les spécificités de votre métier. Au-delà du bilan annuel, vous disposez d'un suivi complet, pensé pour les contraintes de l'exercice libéral, et d'un contact humain durable qui fait la différence face à une comptabilité 100 % automatisée.</p>
+    <div class="grid g3" style="margin-top:34px;">
+      <div class="card"><div class="ico">1</div><h3>Tenue de la comptabilité et obligations BNC</h3><p>Suivi de vos recettes et dépenses, déclaration 2035, des comptes clairs pour piloter votre activité.</p><a class="more" href="https://www.inextenso.fr/nos-offres/comptabilite/">Comptabilité &rsaquo;</a></div>
+      <div class="card"><div class="ico">2</div><h3>Déclarations fiscales et choix du régime</h3><p>Choix micro-BNC ou régime réel, TVA, optimisation. L'objectif, payer le juste impôt sans risque.</p><a class="more" href="https://www.inextenso.fr/nos-offres/fiscalite/declarations-fiscales/">Déclarations fiscales &rsaquo;</a></div>
+      <div class="card"><div class="ico">3</div><h3>Gestion sociale, paie et cotisations</h3><p>Bulletins de paie, déclarations sociales et anticipation de vos cotisations personnelles.</p><a class="more" href="https://www.inextenso.fr/nos-offres/gestion-sociale-et-paie/">Gestion sociale et paie &rsaquo;</a></div>
+      <div class="card"><div class="ico">4</div><h3>Conseil juridique et forme d'exercice</h3><p>Choix de la forme juridique, statuts et évolutions de structure, en individuel comme en société.</p><a class="more" href="https://www.inextenso.fr/nos-offres/juridique/">Conseil juridique &rsaquo;</a></div>
+      <div class="card"><div class="ico">5</div><h3>Optimisation rémunération et patrimoine</h3><p>Arbitrage rémunération/dividendes, préparation de la retraite et structuration patrimoniale.</p><a class="more" href="https://www.inextenso.fr/nos-offres/gestion-patrimoine/">Gestion de patrimoine &rsaquo;</a></div>
+    </div>
+    <p class="note">Maillage interne contextualisé vers les pages piliers /nos-offres/ existantes.</p>
+  </div>
+</section>
+
+<!-- 5. ACCOMPAGNEMENT PAR ETAPE DE VIE (nouveau : cycle de vie du prospect, inspire Baker Tilly) -->
+<section class="grey rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Notre accompagnement</span>
+    <h2>Un conseil expert à chaque étape de votre activité libérale</h2>
+    <p class="lead">Où que vous en soyez dans votre carrière, vous êtes accompagné par un expert-comptable qui connaît les enjeux de votre métier.</p>
+    <div class="grid g4" style="margin-top:34px;">
+      <div class="card"><div class="ico">1</div><h3>Création et lancement</h3><p>Dès les premières étapes de votre projet, vous êtes conseillé sur l'étude de faisabilité, le choix du statut juridique (EI, SEL, SCP...), le régime fiscal et le prévisionnel financier. In Extenso vous accompagne pour démarrer dans les meilleures conditions.</p><a class="more" href="https://www.inextenso.fr/nos-offres/creation-reprise-entreprise/">Création d'activité &rsaquo;</a></div>
+      <div class="card"><div class="ico">2</div><h3>Structuration et pilotage</h3><p>Une fois lancé, vous disposez d'outils de suivi simples pour piloter votre comptabilité, votre trésorerie et vos obligations déclaratives. Votre conseiller vous aide aussi à optimiser vos revenus et à anticiper un éventuel changement de régime.</p><a class="more" href="https://www.inextenso.fr/nos-offres/comptabilite/">Pilotage au quotidien &rsaquo;</a></div>
+      <div class="card"><div class="ico">3</div><h3>Développement et croissance</h3><p>Quand votre activité évolue, vous êtes accompagné sur l'embauche, les investissements, l'ouverture d'un second cabinet ou le passage en SEL. Des conseils en stratégie, organisation et optimisation financière sécurisent chaque étape.</p><a class="more" href="https://www.inextenso.fr/nos-offres/juridique/">Passage en société &rsaquo;</a></div>
+      <div class="card"><div class="ico">4</div><h3>Transmission ou cessation</h3><p>Anticiper la fin de carrière ou la cession sécurise votre avenir. In Extenso vous accompagne sur la valorisation de votre activité, la préparation de la retraite, la fiscalité de la cession et la transmission à un confrère, pour un départ serein.</p><a class="more" href="https://www.inextenso.fr/nos-offres/gestion-patrimoine/">Retraite et transmission &rsaquo;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. CTA INTERMEDIAIRE (nouveau : relance en milieu de page) -->
+<section class="midcta rel" style="padding:56px 0;">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow" style="color:#fff;opacity:.9">Passons à l'action</span>
+    <h2>Un expert-comptable pour votre activité libérale</h2>
+    <div class="btns">
+      <a href="#conversion" class="btn">Être recontacté</a>
+      <a href="#" class="btn">Trouver une agence près de chez vous</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. POURQUOI IN EXTENSO (V4 : réassurance, conservé tel quel, placé après les solutions) -->
+<section class="rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Pourquoi nous</span>
+    <h2>Pourquoi les libéraux nous choisissent</h2>
+    <div class="grid g3" style="margin-top:30px;">
+      <div class="card"><h3>On connaît votre profession</h3><p>Spécialistes du BNC, de la SEL et de vos caisses (CARMF, CARPIMKO, CIPAV...), nous maîtrisons les règles propres à votre métier. Pas un cabinet généraliste qui découvre votre activité.</p></div>
+      <div class="card"><h3>On optimise votre résultat et vos cotisations</h3><p>Arbitrage entre rémunération et dividendes en société, anticipation des régularisations URSSAF, dispositifs Madelin et PER. Des leviers concrets, en euros, sur votre revenu.</p></div>
+      <div class="card"><h3>Un conseiller dédié, dans la durée</h3><p>Un interlocuteur stable qui suit votre dossier et anticipe pour vous. Vous gardez votre temps et votre énergie pour vos patients, vos clients ou vos dossiers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. INTERLOCUTEURS / ASSOCIES (nouveau : E-E-A-T YMYL, schema Person) -->
+<section class="grey rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Vos interlocuteurs</span>
+    <h2>Quelques spécialistes des professions libérales</h2>
+    <p class="lead">Plus de 100 experts dédiés aux professions libérales vous accompagnent partout en région.</p>
+    <div class="grid g4" style="margin-top:30px;">
+      <div class="person"><div class="ph"></div><h3 style="font-size:20px;margin-bottom:4px;">Prénom Nom</h3><div class="role">Responsable pôle professions libérales</div></div>
+      <div class="person"><div class="ph"></div><h3 style="font-size:20px;margin-bottom:4px;">Prénom Nom</h3><div class="role">Expert-comptable</div></div>
+      <div class="person"><div class="ph"></div><h3 style="font-size:20px;margin-bottom:4px;">Prénom Nom</h3><div class="role">Spécialiste social et paie</div></div>
+      <div class="person"><div class="ph"></div><h3 style="font-size:20px;margin-bottom:4px;">Prénom Nom</h3><div class="role">Conseil en gestion de patrimoine</div></div>
+    </div>
+    <p class="note">A completer par In Extenso (vrais noms + photos). Signal E-E-A-T fort sur sujet YMYL, balisage schema Person.</p>
+  </div>
+</section>
+
+<!-- 7b. MINI CONTACT (nouveau : relance directe sous les associes) -->
+<section class="rel" style="padding:0;">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;background:var(--ink);color:#fff;padding:34px 40px;">
+      <div style="flex:1 1 340px;">
+        <h3 style="color:#fff;margin:0 0 6px;">Parlons de votre activité</h3>
+        <p style="color:#e7eefb;margin:0;font-size:17px;">Posez vos questions à un conseiller In Extenso, sans engagement.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;">
+        <a class="tel" style="font-size:26px;margin:0;" href="tel:+33100000000">01 00 00 00 00</a>
+        <a href="#conversion" class="btn orange">Être recontacté</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. TEMOIGNAGES (V4 : 3 verbatims, contrainte design system) -->
+<section class="rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Ils nous font confiance</span>
+    <h2>Ne nous croyez pas sur parole, écoutez nos clients</h2>
+    <div class="grid g3" style="margin-top:30px;">
+      <div class="quote"><p class="q">Un conseiller qui connaît les contraintes de mon cabinet. J'ai enfin l'esprit tranquille sur ma compta et mes cotisations.</p><div class="who">Prénom N., chirurgien-dentiste</div></div>
+      <div class="quote"><p class="q">Le passage en société a été chiffré et expliqué clairement. J'ai pris ma décision en connaissance de cause.</p><div class="who">Prénom N., avocate</div></div>
+      <div class="quote"><p class="q">Des réponses rapides et un vrai suivi de mes échéances. Je me concentre sur mes missions.</p><div class="who">Prénom N., consultante</div></div>
+    </div>
+    <p class="note">3 verbatims d'illustration, à remplacer par des verbatims réels issus du baromètre client (segment professions libérales).</p>
+  </div>
+</section>
+
+<!-- 6. NOS ENGAGEMENTS (existant sur les pages In Extenso) -->
+<section class="grey rel">
+  <span class="tag exist">Existant</span>
+  <div class="wrap">
+    <span class="eyebrow">Nos engagements</span>
+    <h2>Ce sur quoi vous pouvez compter</h2>
+    <div class="grid g4" style="margin-top:30px;">
+      <div class="card"><h3>Clarté</h3><p>Des honoraires lisibles et des comptes compréhensibles, sans jargon ni mauvaise surprise.</p></div>
+      <div class="card"><h3>Innovation et digital</h3><p>Des outils en ligne pour suivre votre activité, vos factures et vos indicateurs à tout moment.</p></div>
+      <div class="card"><h3>Humain</h3><p>Un conseiller qui vous connaît, joignable et à l'écoute, jamais un standard anonyme.</p></div>
+      <div class="card"><h3>Proximité</h3><p>Un interlocuteur disponible qui comprend votre quotidien d'indépendant et reste proche de vous.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ (a renforcer : absorbe le pedagogique + orientation commerciale, FAQPage) -->
+<section class="rel">
+  <span class="tag reinforce">A renforcer</span>
+  <div class="wrap">
+    <span class="eyebrow">Vos questions</span>
+    <h2>Foire aux questions</h2>
+    <div class="faq" style="margin-top:26px;max-width:920px;">
+
+      <details open><summary>Qu'est-ce qu'une profession libérale, et pourquoi un expert-comptable spécialisé ?</summary>
+        <p>Une profession libérale est une activité indépendante de nature intellectuelle ou technique, exercée sous votre propre responsabilité. On distingue les professions réglementées (médecins, avocats, notaires, architectes, infirmiers) et non réglementées (consultants, coachs, formateurs, designers). Dans les deux cas, vos revenus relèvent le plus souvent des bénéfices non commerciaux (BNC).</p>
+        <p>Ces règles fiscales, sociales et comptables sont spécifiques. Chez In Extenso, plus de 5 000 professionnels libéraux sont accompagnés par un conseiller dédié qui maîtrise ces particularités, de la déclaration 2035 aux caisses de retraite propres à chaque métier. C'est ce qui distingue un cabinet spécialisé d'une comptabilité 100 % automatisée.</p>
+      </details>
+
+      <details><summary>Micro-BNC ou régime réel : quel régime fiscal pour votre activité ?</summary>
+        <p>Le choix du régime fiscal pèse directement sur votre impôt et sur le temps consacré à votre comptabilité. Deux options selon votre niveau de recettes et de charges.</p>
+        <table class="cmp">
+          <tr><th>Critère</th><th>Micro-BNC</th><th>Régime réel (déclaration contrôlée)</th></tr>
+          <tr><td>Seuil de recettes</td><td>En dessous du seuil annuel en vigueur (77 700 € en 2025)</td><td>Au-delà du seuil, ou sur option</td></tr>
+          <tr><td>Calcul du bénéfice</td><td>Abattement forfaitaire de 34 % sur les recettes</td><td>Charges réelles déduites du chiffre d'affaires</td></tr>
+          <tr><td>Comptabilité</td><td>Livre des recettes simplifié</td><td>Comptabilité de trésorerie complète, déclaration 2035</td></tr>
+          <tr><td>Intérêt</td><td>Charges faibles, gestion simple</td><td>Charges supérieures à 34 % des recettes</td></tr>
+        </table>
+        <p>La bascule devient intéressante dès que vos charges réelles dépassent l'abattement forfaitaire de 34 %. Chez In Extenso, votre expert-comptable chiffre les deux scénarios et sécurise l'option la plus avantageuse, année après année.</p>
+      </details>
+
+      <details><summary>Comment fonctionnent vos cotisations sociales en libéral ?</summary>
+        <p>Depuis 2020, les professions libérales relèvent du régime général de la Sécurité sociale des indépendants, l'URSSAF assurant le recouvrement des cotisations. La retraite reste gérée par des caisses spécifiques selon votre métier (CNAVPL, CIPAV, CARMF...). Vos cotisations sont d'abord calculées sur une base provisionnelle, puis régularisées l'année suivante en fonction de votre revenu réel, ce qui surprend beaucoup d'indépendants.</p>
+        <p>In Extenso anticipe ce calcul, vous aide à provisionner et lisse la charge sur votre trésorerie. En début d'activité, vous pouvez aussi bénéficier de l'ACRE, une exonération partielle de cotisations la première année.</p>
+      </details>
+
+      <details><summary>Sous quelle forme juridique exercer (EI, SEL, SCM) ?</summary>
+        <p>Plusieurs structures coexistent pour les professions libérales : l'entreprise individuelle (EI), simple et adaptée au démarrage, imposée à l'IR en BNC ; la société d'exercice libéral (SELARL, SELAS), imposée à l'IS et permettant d'arbitrer entre rémunération et dividendes ; la société civile de moyens (SCM), pour partager locaux et moyens entre confrères ; ou la holding (SPFPL) qui détient des parts de sociétés d'exercice libéral.</p>
+        <p>Le bon choix dépend de votre niveau de bénéfice, de votre projet d'association et de vos objectifs patrimoniaux. In Extenso réalise l'étude chiffrée qui vous permet de trancher en connaissance de cause.</p>
+      </details>
+
+      <details><summary>Combien coûte un expert-comptable In Extenso pour une profession libérale ?</summary>
+        <p>Les honoraires dépendent de votre volume d'activité, de votre forme juridique et de l'étendue de la mission. Une activité en micro-BNC mobilise un budget plus léger qu'une société d'exercice libéral avec paie et déclarations multiples. Le régime fiscal, le nombre de pièces à traiter, la présence de salariés et les missions de conseil ajoutées entrent en compte.</p>
+        <p>Bonne nouvelle : ces honoraires constituent une charge déductible de votre résultat au régime réel. In Extenso vous remet un devis transparent, calibré sur vos besoins réels, sans engagement caché.</p>
+      </details>
+
+      <details><summary>Un expert-comptable est-il obligatoire pour une profession libérale ?</summary>
+        <p>Non, le recours à un expert-comptable n'est pas une obligation légale. Il devient vite indispensable dès que vous relevez de la déclaration contrôlée : il sécurise vos déclarations, évite les erreurs coûteuses sur un sujet à fort enjeu et vous rend un temps précieux. C'est précisément le rôle du conseiller dédié In Extenso, qui va au-delà de la simple production du bilan pour vous conseiller au quotidien.</p>
+      </details>
+
+      <details><summary>L'expert-comptable est-il lui-même une profession libérale ?</summary>
+        <p>Oui, l'expert-comptable exerce une profession libérale réglementée, encadrée par l'Ordre des experts-comptables. Chez In Extenso, cela se traduit par un interlocuteur qui connaît de l'intérieur les contraintes de l'indépendant que vous êtes.</p>
+      </details>
+
+    </div>
+    <p class="note">FAQ enrichie (retour cliente) : absorbe les blocs pédagogiques (définition, régime fiscal + tableau, régime social, forme juridique, tarif), orientation commerciale et mention In Extenso dans chaque réponse. Longue traîne + visibilité GEO/AEO + balisage schema FAQPage.</p>
+  </div>
+</section>
+
+<!-- 9b. FOCUS OFFRE / PARTENAIRE (nouveau : bloc modulaire OPTIONNEL, cas par cas) -->
+<section class="grey rel">
+  <span class="tag new">Bloc optionnel</span>
+  <div class="wrap">
+    <span class="eyebrow">Focus sur</span>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:32px;border:1px solid #e3e9ee;border-left:6px solid var(--orange);padding:34px 40px;">
+      <div style="flex:0 0 auto;font-family:var(--font-title);text-transform:uppercase;color:var(--ink);font-size:30px;line-height:1.02;">In Extenso<br><span style="color:var(--orange);">Patrimoine</span></div>
+      <div style="flex:1 1 320px;">
+        <h3 style="margin:0 0 8px;">Gestion de patrimoine des professions libérales</h3>
+        <p style="margin:0;">Optimisation de la rémunération, préparation de la retraite et structuration patrimoniale avec les spécialistes In Extenso Patrimoine.</p>
+      </div>
+      <div style="flex:0 0 auto;"><a href="#" class="btn orange">Découvrir</a></div>
+    </div>
+    <p class="note">Bloc modulaire <b>optionnel</b> : à activer au cas par cas quand une offre ou un partenaire spécifique est à mettre en avant (ici In Extenso Patrimoine). Peut être retiré, déplacé ou remplacé selon le profil / l'offre. Lien à pointer vers le sous-site In Extenso Patrimoine.</p>
+  </div>
+</section>
+
+<!-- 10. ACTUALITES / BLOG (nouveau : fraicheur editoriale + maillage interne) -->
+<section class="rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Le mag In Extenso</span>
+    <h2>La bonne info au bon moment : suivez notre actualité</h2>
+    <div class="posts">
+      <article class="post article">
+        <div class="media"><span class="cat">Article</span></div>
+        <div class="body">
+          <h3>Professions libérales : ce qui change pour vos cotisations cette année</h3>
+          <div class="pfoot"><span class="date"></span><span class="arrow">&rsaquo;</span></div>
+        </div>
+      </article>
+      <article class="post event">
+        <div class="media"><span class="cat">Événement</span></div>
+        <div class="body">
+          <h3>Webinaire : optimiser sa rémunération en SEL</h3>
+          <div class="pfoot"><span class="date">Le 10 juillet 2026, 11h30 à 12h30</span><span class="arrow">&rsaquo;</span></div>
+        </div>
+      </article>
+      <article class="post actu">
+        <div class="media"><span class="cat">Actualité</span></div>
+        <div class="body">
+          <h3>Déclaration 2035 : les nouveautés pour les BNC</h3>
+          <div class="pfoot"><span class="date"></span><span class="arrow">&rsaquo;</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="morelinks">
+      <a href="#">Plus d'articles &rarr;</a>
+      <a href="#">Plus d'actualités &rarr;</a>
+    </div>
+    <p class="note">Articles thématisés profession libérale (BNC, SEL, cotisations), affichage dynamique selon la thématique de la page. Fraîcheur éditoriale + maillage interne.</p>
+  </div>
+</section>
+
+<!-- 11. CONVERSION FINALE (existant) -->
+<section id="conversion" style="padding:0;" class="rel">
+  <span class="tag exist">Existant</span>
+  <div class="conv">
+    <div class="left">
+      <span class="eyebrow" style="color:#fff;opacity:.9">Parlons de votre activité</span>
+      <h2>Être recontacté</h2>
+      <p>Un expert-comptable spécialisé dans les professions libérales vous rappelle pour faire le point sur vos besoins.</p>
+      <p style="margin-top:24px;">Par téléphone :<br><a class="tel" href="tel:+33100000000">01 00 00 00 00</a></p>
+      <p><a href="#">Trouver l'agence la plus proche &rsaquo;</a></p>
+    </div>
+    <div class="right">
+      <form onsubmit="return false">
+        <input class="field" placeholder="Nom">
+        <input class="field" placeholder="Email">
+        <input class="field" placeholder="Téléphone">
+        <textarea class="field" rows="3" placeholder="Votre activité"></textarea>
+        <button class="btn orange" type="submit">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 12. DONNEES STRUCTUREES (nouveau : reference dev, JSON-LD a integrer) -->
+<section class="schemabox rel">
+  <span class="tag new">Nouveau bloc</span>
+  <div class="wrap">
+    <span class="eyebrow">Reco technique SEO/GEO</span>
+    <h2>Données structurées (JSON-LD) à intégrer</h2>
+    <p>Schemas à poser sur ce type de page offre / profil. Un bloc <code>&lt;script type="application/ld+json"&gt;</code> par schema, dans le <code>&lt;head&gt;</code> ou juste avant <code>&lt;/body&gt;</code>. Adapter les URLs, chiffres et noms réels, puis valider chaque schema dans le Rich Results Test de Google. Cliquer pour déplier.</p>
+
+    <details>
+      <summary>1. BreadcrumbList (fil d'Ariane)</summary>
+      <p class="desc">Reprend le fil d'Ariane visible en haut de page. Améliore l'affichage de l'URL dans la SERP.</p>
+      <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.inextenso.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Nos offres", "item": "https://www.inextenso.fr/nos-offres/" },
+    { "@type": "ListItem", "position": 3, "name": "Expert-comptable profession libérale", "item": "https://www.inextenso.fr/nos-offres/expert-comptable-profession-liberale/" }
+  ]
+}
+&lt;/script&gt;</pre>
+    </details>
+
+    <details>
+      <summary>2. Service + AccountingService (l'offre et son prestataire)</summary>
+      <p class="desc">Décrit l'offre "expert-comptable profession libérale", son prestataire (In Extenso) et le catalogue des prestations. Chiffres et téléphone à confirmer par In Extenso avant mise en ligne (YMYL).</p>
+      <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Expert-comptable spécialiste des professions libérales",
+  "serviceType": "Expertise comptable pour professions libérales",
+  "description": "Accompagnement comptable, fiscal, social et juridique dédié aux professions libérales (BNC, SEL), avec un conseiller dédié partout en France.",
+  "areaServed": { "@type": "Country", "name": "France" },
+  "audience": { "@type": "Audience", "audienceType": "Professions libérales (médecins, avocats, consultants, indépendants)" },
+  "provider": {
+    "@type": "AccountingService",
+    "name": "In Extenso",
+    "url": "https://www.inextenso.fr/",
+    "logo": "https://www.inextenso.fr/[chemin-du-logo].png",
+    "foundingDate": "1991",
+    "areaServed": { "@type": "Country", "name": "France" },
+    "telephone": "+33-X-XX-XX-XX-XX"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations pour professions libérales",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tenue de la comptabilité et obligations BNC" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Déclarations fiscales et choix du régime" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestion sociale, paie et cotisations" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conseil juridique et forme d'exercice" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimisation rémunération et patrimoine" } }
+    ]
+  }
+}
+&lt;/script&gt;</pre>
+    </details>
+
+    <details>
+      <summary>3. FAQPage (bloc Foire aux questions)</summary>
+      <p class="desc">À caler exactement sur les questions/réponses visibles dans le bloc FAQ. Éligible aux rich results FAQ et fortement valorisé en GEO/AEO. Le texte des réponses doit être identique à celui affiché.</p>
+      <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'une profession libérale, et pourquoi un expert-comptable spécialisé ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Une profession libérale est une activité indépendante de nature intellectuelle ou technique, exercée sous votre propre responsabilité. On distingue les professions réglementées (médecins, avocats, notaires, architectes, infirmiers) et non réglementées (consultants, coachs, formateurs, designers). Dans les deux cas, vos revenus relèvent le plus souvent des bénéfices non commerciaux (BNC). Ces règles fiscales, sociales et comptables sont spécifiques, ce qui justifie l'accompagnement d'un expert-comptable spécialisé." }
+    },
+    {
+      "@type": "Question",
+      "name": "Micro-BNC ou régime réel : quel régime fiscal pour votre activité ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le choix du régime fiscal pèse directement sur votre impôt et sur le temps consacré à votre comptabilité. Le micro-BNC applique un abattement forfaitaire de 34 % en dessous du seuil annuel en vigueur ; le régime réel (déclaration contrôlée) déduit vos charges réelles. La bascule devient intéressante dès que vos charges dépassent l'abattement de 34 %. Votre expert-comptable chiffre les deux scénarios et sécurise l'option la plus avantageuse." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment fonctionnent vos cotisations sociales en libéral ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Depuis 2020, les professions libérales relèvent du régime général de la Sécurité sociale des indépendants, l'URSSAF assurant le recouvrement. La retraite reste gérée par des caisses spécifiques selon le métier (CNAVPL, CIPAV, CARMF...). Les cotisations sont d'abord provisionnelles puis régularisées l'année suivante sur le revenu réel. En début d'activité, l'ACRE permet une exonération partielle la première année." }
+    },
+    {
+      "@type": "Question",
+      "name": "Sous quelle forme juridique exercer (EI, SEL, SCM) ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Plusieurs structures coexistent : l'entreprise individuelle (EI), imposée à l'IR en BNC ; la société d'exercice libéral (SELARL, SELAS), imposée à l'IS et permettant d'arbitrer rémunération et dividendes ; la société civile de moyens (SCM), pour partager locaux et moyens ; ou la holding (SPFPL). Le bon choix dépend de votre niveau de bénéfice, de votre projet d'association et de vos objectifs patrimoniaux." }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte un expert-comptable In Extenso pour une profession libérale ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les honoraires dépendent de votre volume d'activité, de votre forme juridique et de l'étendue de la mission. Une activité en micro-BNC mobilise un budget plus léger qu'une société d'exercice libéral avec paie et déclarations multiples. Ces honoraires constituent une charge déductible au régime réel. In Extenso remet un devis transparent, calibré sur vos besoins réels, sans engagement caché." }
+    },
+    {
+      "@type": "Question",
+      "name": "Un expert-comptable est-il obligatoire pour une profession libérale ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non, le recours à un expert-comptable n'est pas une obligation légale. Il devient vite indispensable dès que vous relevez de la déclaration contrôlée : il sécurise vos déclarations, évite les erreurs coûteuses et vous fait gagner du temps sur un sujet à fort enjeu." }
+    },
+    {
+      "@type": "Question",
+      "name": "L'expert-comptable est-il lui-même une profession libérale ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, l'expert-comptable exerce une profession libérale réglementée, encadrée par l'Ordre des experts-comptables. Il connaît donc de l'intérieur les contraintes de l'indépendant que vous êtes." }
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+    </details>
+
+    <details>
+      <summary>4. Person (bloc "Quelques spécialistes") — signal E-E-A-T</summary>
+      <p class="desc">Un objet Person par spécialiste réellement affiché, avec vrais nom, fonction et photo. Renforce l'E-E-A-T sur ce sujet YMYL. Dupliquer le modèle ci-dessous pour chaque personne.</p>
+      <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prénom Nom",
+  "jobTitle": "Responsable pôle professions libérales",
+  "image": "https://www.inextenso.fr/[photo].jpg",
+  "worksFor": { "@type": "AccountingService", "name": "In Extenso", "url": "https://www.inextenso.fr/" }
+}
+&lt;/script&gt;</pre>
+    </details>
+
+    <p class="desc" style="padding-top:8px;"><b>Note témoignages :</b> ne pas baliser les avis clients de la page en Review / AggregateRating pour viser des étoiles dans la SERP. Google n'affiche plus de rich results pour les avis auto-hébergés sur sa propre marque (règle "self-serving reviews"). On garde les verbatims en contenu, sans balisage Review.</p>
+  </div>
+</section>
+
+</body>
+</html>
