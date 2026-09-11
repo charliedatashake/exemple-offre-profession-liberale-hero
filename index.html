@@ -141,7 +141,23 @@
   .schemabox details[open] summary:before{content:"\2013 ";}
   .schemabox .desc{color:#aac4e6;font-size:14px;padding:0 20px 12px;margin:0;}
   .schemabox pre{margin:0;padding:18px 20px;overflow:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;color:#d7e3f5;white-space:pre;border-top:1px solid #24406e;}
+  /* Bandeau de reassurance (sous le hero) */
+  .trustbar{background:#fff;border-bottom:1px solid #e3e9ee;padding:0;}
+  .trustbar .wrap{display:grid;grid-template-columns:repeat(4,1fr);align-items:center;}
+  .trustbar .item{display:flex;align-items:center;gap:14px;padding:22px 22px;border-left:1px solid #e3e9ee;min-height:88px;}
+  .trustbar .item:first-child{border-left:0;padding-left:0;}
+  .trustbar .ic{flex:0 0 40px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--ink);}
+  .trustbar .ic svg{width:38px;height:38px;display:block;}
+  .trustbar .txt{font-family:var(--font-body);font-size:16px;line-height:1.25;font-weight:700;color:var(--ink);}
+  .trustbar .txt .hi{color:var(--cyan);}
+  .trustbar .txt .sub{display:block;font-weight:400;font-size:14px;color:#5d5d5d;margin-top:3px;}
+  .trustbar .rate{display:flex;align-items:center;gap:8px;font-family:var(--font-title);font-size:24px;line-height:1;color:var(--ink);}
+  .trustbar .stars{display:inline-flex;gap:2px;color:var(--orange);}
+  .trustbar .stars svg{width:17px;height:17px;}
   @media(max-width:900px){.g3,.g4,.g2,.conv,.posts{grid-template-columns:1fr;}h1{font-size:40px;}h2{font-size:32px;}.stats .num{font-size:76px;}table.cmp,table.cmp tbody,table.cmp tr,table.cmp td{display:block;width:100%;}table.cmp th{display:none;}table.cmp tr{border-bottom:2px solid var(--ink);margin-bottom:12px;}table.cmp tr td:first-child{width:100%;}}
+
+  @media(max-width:900px){.trustbar .wrap{grid-template-columns:1fr 1fr;}.trustbar .item{border-left:0;border-top:1px solid #e3e9ee;padding:18px 0 18px 0;}.trustbar .item:nth-child(2n){padding-left:18px;border-left:1px solid #e3e9ee;}.trustbar .item:nth-child(-n+2){border-top:0;}}
+  @media(max-width:560px){.trustbar .wrap{grid-template-columns:1fr;}.trustbar .item:nth-child(2n){padding-left:0;border-left:0;}.trustbar .item:nth-child(2){border-top:1px solid #e3e9ee;}}
 </style>
 </head>
 <body>
@@ -166,6 +182,32 @@
     <p style="margin-top:26px;"><a href="#conversion" class="btn orange">Être recontacté</a></p>
   </div>
 </header>
+
+<!-- 1bis. BANDEAU DE REASSURANCE (nouveau : preuves sous le hero, inspire des landing pages concurrentes) -->
+<div class="trustbar rel">
+  <span class="tag new" style="top:10px;right:10px;">Nouveau bloc</span>
+  <div class="wrap">
+    <div class="item">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="9" r="5.2"/><path d="M9.2 13.6L7.4 21l4.6-2.3 4.6 2.3-1.8-7.4"/><path d="M10.1 9.1l1.4 1.5 2.5-2.9"/></svg></span>
+      <span class="txt">Inscrit &agrave; l'Ordre des<br>experts-comptables</span>
+    </div>
+    <div class="item">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+      <span class="txt"><span class="hi">280 agences</span> partout<br>en France</span>
+    </div>
+    <div class="item">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.2 19c0-3.2 2.6-5.2 5.8-5.2s5.8 2 5.8 5.2"/><circle cx="17.2" cy="9.2" r="2.4"/><path d="M15.4 14.2c3 0 5.4 1.8 5.4 4.8"/></svg></span>
+      <span class="txt"><span class="hi">7 300 collaborateurs</span><br>&agrave; vos c&ocirc;t&eacute;s</span>
+    </div>
+    <div class="item">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M21 12.2c0 4.2-4 7.3-9 7.3-1 0-2-.1-2.9-.4L4 21l1.4-3.5C3.9 16.2 3 14.3 3 12.2 3 8 7 4.9 12 4.9s9 3.1 9 7.3z"/></svg></span>
+      <span class="txt">
+        <span class="rate">4,8/5 <span class="stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="hs"><stop offset="80%" stop-color="currentColor"/><stop offset="80%" stop-color="#d9dee4"/></linearGradient></defs><path fill="url(#hs)" d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9L12 2.6z"/></svg></span></span>
+        <span class="sub">+ 3 000 avis clients Custplace</span>
+      </span>
+    </div>
+  </div>
+</div>
 
 <!-- 2. VOS ENJEUX (V4 : ex-bloc "Comment pouvons-nous vous aider ?" remonté en tête de page + intro sémantique fusionnée) -->
 <section class="grey rel">
